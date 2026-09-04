@@ -2,48 +2,34 @@
 'use client';
 
 import { useState } from 'react';
-import { useRef } from 'react';
-import emailjs from '@emailjs/browser';
 
 const Contact = () => {
-  const formRef = useRef<HTMLFormElement>(null);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-
-    try {
-      // Replace with your EmailJS credentials
-      // await emailjs.sendForm(
-      //   'YOUR_SERVICE_ID',
-      //   'YOUR_TEMPLATE_ID',
-      //   formRef.current!,
-      //   'YOUR_PUBLIC_KEY'
-      // );
-      // Simulate sending
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      setIsSubmitted(true);
-      formRef.current?.reset();
-    } catch (error) {
-      console.error('Error sending email:', error);
-    } finally {
-      setIsLoading(false);
-    }
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    setIsSubmitted(true);
+    setIsLoading(false);
   };
 
   return (
     <section className="py-20 px-4 bg-gray-50 dark:bg-gray-800/50" id="contact">
       <div className="container mx-auto max-w-2xl">
-        <h2 className="text-4xl font-bold text-center mb-4 gradient-text">
-          Get In Touch
-        </h2>
-        <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mb-8" />
-
-        <p className="text-center text-gray-600 dark:text-gray-400 mb-12">
-          Have a project in mind? Let's collaborate and bring your ideas to life.
-        </p>
+        <div className="text-center mb-12">
+          <span className="inline-block bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-sm font-semibold px-4 py-1.5 rounded-full mb-4">
+            📬 Contact
+          </span>
+          <h2 className="text-4xl font-bold text-gray-800 dark:text-white mb-4">
+            Get In Touch
+          </h2>
+          <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full" />
+          <p className="text-gray-600 dark:text-gray-400 mt-4">
+            Have a project in mind? Let's collaborate and bring your ideas to life.
+          </p>
+        </div>
 
         {isSubmitted ? (
           <div className="text-center p-8 bg-green-100 dark:bg-green-900 rounded-xl">
@@ -62,7 +48,7 @@ const Contact = () => {
             </button>
           </div>
         ) : (
-          <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-6">
             <div>
               <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                 Name

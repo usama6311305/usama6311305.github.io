@@ -1,50 +1,38 @@
 // src/components/Experience.tsx
 'use client';
 
-import { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
-import { useInView } from 'react-intersection-observer';
 import { experiences } from '@/data/experience';
 
 const Experience = () => {
-  const sectionRef = useRef<HTMLElement>(null);
-  const { ref, inView } = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
-
-  useEffect(() => {
-    if (inView) {
-      gsap.from('.experience-item', {
-        opacity: 0,
-        x: -30,
-        duration: 0.8,
-        stagger: 0.2,
-        ease: 'power3.out',
-      });
-    }
-  }, [inView]);
+  // Check if experiences exists and is an array
+  if (!experiences || !Array.isArray(experiences)) {
+    return (
+      <section className="py-20 px-4 bg-gray-50 dark:bg-gray-800/50" id="experience">
+        <div className="container mx-auto text-center">
+          <p className="text-red-500">Experience data not available</p>
+        </div>
+      </section>
+    );
+  }
 
   return (
-    <section
-      ref={(el) => {
-        sectionRef.current = el;
-        ref(el);
-      }}
-      className="py-20 px-4 bg-gray-50 dark:bg-gray-800/50"
-      id="experience"
-    >
+    <section className="py-20 px-4 bg-gray-50 dark:bg-gray-800/50" id="experience">
       <div className="container mx-auto">
-        <h2 className="text-4xl font-bold text-center mb-4 gradient-text">
-          Experience
-        </h2>
-        <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mb-12" />
+        <div className="text-center mb-12">
+          <span className="inline-block bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 text-sm font-semibold px-4 py-1.5 rounded-full mb-4">
+            💼 Experience
+          </span>
+          <h2 className="text-4xl font-bold text-gray-800 dark:text-white mb-4">
+            Professional Experience
+          </h2>
+          <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full" />
+        </div>
 
         <div className="max-w-4xl mx-auto">
           {experiences.map((exp, index) => (
             <div
               key={index}
-              className="experience-item relative pl-8 pb-12 border-l-2 border-blue-500 last:border-l-0 last:pb-0"
+              className="relative pl-8 pb-12 border-l-2 border-blue-500 last:border-l-0 last:pb-0"
             >
               <div className="absolute left-[-9px] top-0 w-4 h-4 bg-blue-500 rounded-full" />
               <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow">
