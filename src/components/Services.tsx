@@ -7,7 +7,7 @@ import { useInView } from 'react-intersection-observer';
 import { services } from '@/data/services';
 
 const Services = () => {
-  const sectionRef = useRef<HTMLElement>(null);
+  // const sectionRef = useRef<HTMLElement>(null); // Remove this
   const { ref, inView } = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -27,10 +27,7 @@ const Services = () => {
 
   return (
     <section
-      ref={(el) => {
-        sectionRef.current = el;
-        ref(el);
-      }}
+      ref={ref}  // Use ref directly
       className="py-20 px-4 bg-gray-50 dark:bg-gray-800/50"
       id="services"
     >
