@@ -4,10 +4,10 @@ const Test = () => {
     const [count, setCount]= useState();
   return (
     <div>
-       <div onClick={()=>setCount(count + 1)}>
+       {/* <div onClick={()=>setCount(count + 1)}>
         incrment
         
-        </div>   
+        </div>    */}
     </div>
   )
 }

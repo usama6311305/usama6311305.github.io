@@ -7,7 +7,7 @@ import { useInView } from 'react-intersection-observer';
 import { projects } from '@/data/projects';
 
 const Projects = () => {
-  const sectionRef = useRef<HTMLElement>(null);
+  // const sectionRef = useRef<HTMLElement>(null); // Remove this line
   const { ref, inView } = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -19,7 +19,13 @@ const Projects = () => {
       ? projects
       : projects.filter((p) => p.category === activeFilter);
 
-  const categories = ['all', ...new Set(projects.map((p) => p.category))];
+  // Fixed: Build categories manually for better compatibility
+  const categories = ['all'];
+  projects.forEach((p) => {
+    if (!categories.includes(p.category)) {
+      categories.push(p.category);
+    }
+  });
 
   // useEffect(() => {
   //   if (inView) {
@@ -35,10 +41,7 @@ const Projects = () => {
 
   return (
     <section
-      ref={(el) => {
-        sectionRef.current = el;
-        ref(el);
-      }}
+      ref={ref}  // Just use ref directly
       className="py-20 px-4"
       id="projects"
     >
