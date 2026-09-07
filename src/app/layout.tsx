@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import { ThemeProvider } from '@/components/ThemeToggle';
+import { SidebarProvider } from '@/components/Navbar';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
@@ -22,9 +23,15 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
         <ThemeProvider>
-          <Navbar />
-          {children}
-          <Footer />
+          <SidebarProvider>
+            <Navbar />
+            <main className=" transition-all duration-300 min-h-screen">
+              {children}
+            </main>
+            <div className=" transition-all duration-300">
+              <Footer />
+            </div>
+          </SidebarProvider>
         </ThemeProvider>
       </body>
     </html>

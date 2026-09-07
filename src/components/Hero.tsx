@@ -4,7 +4,7 @@
 import { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { gsap } from 'gsap';
-
+import heropic from "../../public/heropic.jpeg"
 const Hero = () => {
   const heroRef = useRef<HTMLDivElement>(null);
 
@@ -45,7 +45,7 @@ const Hero = () => {
   return (
     <section
       ref={heroRef}
-      className="min-h-screen flex items-center pt-20 pb-12 px-4"
+      className="min-h-screen w-full  flex items-center pt-20 pb-12 px-4"
       id="home"
     >
       <div className="container mx-auto grid md:grid-cols-2 gap-12 items-center">
@@ -103,9 +103,7 @@ const Hero = () => {
             <div className="w-72 h-72 md:w-96 md:h-96 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 animate-float">
               <div className="w-full h-full rounded-full bg-gray-300 dark:bg-gray-700 overflow-hidden">
                 {/* Replace with your image */}
-                <div className="w-full h-full flex items-center justify-center text-8xl">
-                  👨‍💻
-                </div>
+               <img src={heropic.src} alt="" />
               </div>
             </div>
           </div>
