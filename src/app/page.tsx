@@ -11,7 +11,7 @@ import ScrollToTop from '@/components/ScrollToTop';
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen w-full">
       <Hero />
       <About />
       <Skills />
